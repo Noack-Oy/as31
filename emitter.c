@@ -92,13 +92,13 @@ void emitusage(void)
 {
 	int i;
 
-	fprintf(stderr, "\tfmt is one of:");
+	fprintf(stderr, "[");
 	for(i=0; i<FORMTABSIZE; ) {
 		fprintf(stderr, "%s", formtab[i].name);
 		if( ++i < FORMTABSIZE)
-			fprintf(stderr, ", ");
+			fprintf(stderr, "|");
 	}
-	fprintf(stderr, ".\n");
+	fprintf(stderr, "]");
 }
 
 const char *emit_extension(const char *ftype)

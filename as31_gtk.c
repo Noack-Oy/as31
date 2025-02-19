@@ -171,7 +171,7 @@ do_assemble(GtkWidget *widget, gpointer *data)
 
 	/* now we can begin working like normal */
 
-	r = run_as31(filename, do_lst, 0, fmt, NULL);
+	r = run_as31(filename, do_lst, 0, fmt, NULL, NULL);
 
 	if (r == 0) {
 		mesg("Assembly complete, no errors :)\n");

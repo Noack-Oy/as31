@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------
- * FILE: as31.y
+ * FILE: parser.y
  * PACKAGE: as31 - 8031/8051 Assembler.
  *
  * DESCRIPTION:
@@ -1016,13 +1016,13 @@ int makeop(struct opcode * op, struct mode *m, int add)
  *
  */
 
-#define indx(a) ( (a)/(sizeof(long)*8) )
-#define bit(a)	( 1 << ((a)%(sizeof(long)*8)) )
+#define indx(a) ( (a)/(32) )
+#define bit(a)	( 1 << ((a)%(32)) )
 
 #define getloc(a) (regions[indx(a)] & bit(a))
 #define setloc(a) (regions[indx(a)] |= bit(a))
 
-static unsigned long regions[ 0x10000/(sizeof(long)*8) ];
+static unsigned long regions[ 0x10000/(32) ];
 
 void inclc(int i)
 {
@@ -1083,7 +1083,7 @@ void dumplist(char *txt, int show)
 {
 	int i,j;
 
-	fprintf(listing,show?"%04X: ":"      ",lc);
+	fprintf(listing,show?"%04lX: ":"      ",lc);
 
 	j=0;
 	for(i=0; i<bytecount; i++ ) {

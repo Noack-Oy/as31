@@ -20,6 +20,10 @@
  */
 
 #include <stdio.h>
+#include <string.h>
+
+// include directive
+#define INC_CMD ".inc"
 
 /* ----------------------------------------------------------------------
  * user / keyword symbol structures:
@@ -174,7 +178,7 @@ extern void freesym(void);
 
 /* from run.c */
 extern int run_as31(const char *infile, int lst, int use_stdout,
-        const char *fmt, const char *arg);
+		    const char *fmt, const char *arg, const char *customoutfile);
 extern void error(const char *fmt, ...);
 extern void warn(const char *fmt, ...);
 extern void mesg_f(const char *fmt, ...);
@@ -187,5 +191,5 @@ extern FILE *listing;
 
 /* from as31.c or as31_gtk.c */
 extern void mesg(const char *str);
-
+extern void showhelp(const char *cmd);
 

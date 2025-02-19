@@ -20,7 +20,7 @@
 
 
 #Use this CFLAGS line with gcc on linux
-CFLAGS=-O3 -Wall
+CFLAGS=-O3 -Wall -DVERSION='"2.3.1 - MODIFIED"'
 CC=gcc
 
 #Use this CFLAGS line on solaris, etc
