@@ -1060,7 +1060,7 @@ char *padline(char *line)
 	for(p1=line; pos<sizeof(newline)-1 && *p1; p1++ ) {
 		if( *p1 == '\t' ) {
 			nxtpos = pos+8-pos%8;
-			while(pos<sizeof(newline)-1 && pos <= nxtpos)
+			while(pos<sizeof(newline)-1 && pos < nxtpos)
 				newline[pos++] = ' ';
 		} else if( *p1 != '\n' )
 			newline[pos++]= *p1;
