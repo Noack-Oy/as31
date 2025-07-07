@@ -278,7 +278,7 @@ void error(const char *fmt, ...)
 {
 	va_list args;
 	char buf[2048];
-	int len;
+	int len, line;
 	char *filename;
 
 	abort_asap++;
@@ -286,7 +286,8 @@ void error(const char *fmt, ...)
 	va_start(args, fmt);
 	
 	filename = asmfile;
-	len = snprintf(buf, sizeof(buf), "Error in %s, line %d, ", filename, find_line(lineno, &filename));
+	line = find_line(lineno, &filename);
+	len = snprintf(buf, sizeof(buf), "Error in %s, line %d, ", filename, line);
 	len += vsnprintf(buf + len, sizeof(buf) - len, fmt, args);
 	snprintf(buf + len, sizeof(buf) - len, ".\n");
 	mesg(buf);
@@ -297,14 +298,15 @@ void warn(const char *fmt, ...)
 {
 	va_list args;
 	char buf[2048];
-	int len;
+	int len, line;
 	char *filename;
 
         fatal++;
 	va_start(args, fmt);
 
 	filename = asmfile;
-	len = snprintf(buf, sizeof(buf), "Warning in %s, line %d, ", filename, find_line(lineno, &filename));
+	line = find_line(lineno, &filename);
+	len = snprintf(buf, sizeof(buf), "Warning in %s, line %d, ", filename, line);
 	len += vsnprintf(buf + len, sizeof(buf) - len, fmt, args);
 	snprintf(buf + len, sizeof(buf) - len, ".\n");
 	mesg(buf);
